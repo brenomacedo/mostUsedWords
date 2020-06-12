@@ -5,6 +5,7 @@ import {
   createProtocol,
   /* installVueDevtools */
 } from 'vue-cli-plugin-electron-builder/lib'
+import './backend'
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -25,7 +26,7 @@ function createWindow () {
   if (process.env.WEBPACK_DEV_SERVER_URL) {
     // Load the url of the dev server if in development mode
     win.loadURL(process.env.WEBPACK_DEV_SERVER_URL)
-    //if (!process.env.IS_TEST) win.webContents.openDevTools()
+    if (!process.env.IS_TEST) win.webContents.openDevTools()
   } else {
     createProtocol('app')
     // Load the index.html when not in development
