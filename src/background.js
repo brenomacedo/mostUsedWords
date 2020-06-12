@@ -33,6 +33,8 @@ function createWindow () {
   }
 
   win.webContents.on('did-finish-load', () => {
+    const { title, version } = require('../package.json')
+    win.setTitle(`${title} - ${version}`)
     console.log('terminou!')
   })
 
