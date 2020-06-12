@@ -1,6 +1,9 @@
 const { ipcMain } = require('electron')
-ipcMain.on('process-subtitle', (event, arg) => {
-    console.log(arg)
-    event.reply('process-subtitle', 'pong')
+const pathsToRows = require('./pathsToRows')
+ipcMain.on('process-subtitle', (event, paths) => {
+    pathsToRows(paths).then(rows => console.log(rows)).then(() => {
+        event.reply('process-subtitle', 'pong')
+    })
+
     
 })
